@@ -1,6 +1,5 @@
 import { useState, useEffect} from "react"
 import Image from "next/image";
-import { Movie, options, POPULAR_MOVIES_URL } from '@/app/data/MoviesRepository';
 import { Card, CardContent } from "@/components/ui/card"
 import {
     Carousel,
@@ -9,9 +8,11 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
+import { options, POPULAR_MOVIES_URL } from "@/constants/config";
+import { MovieTypes } from "@/type/MovieTypes";
 
 export function PopularMovies() {
-    const [items, setItems] = useState<Movie[]>([])
+    const [items, setItems] = useState<MovieTypes[]>([])
 
     useEffect(() => {
         fetch(POPULAR_MOVIES_URL, options)

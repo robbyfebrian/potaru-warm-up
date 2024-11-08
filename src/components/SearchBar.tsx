@@ -3,12 +3,13 @@ import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import Image from "next/image";
 import {Card, CardContent} from "@/components/ui/card";
-import {KEYWORD_MOVIES_URL, Movie, options, UPCOMING_MOVIES_URL} from "@/app/data/MoviesRepository";
+import {KEYWORD_MOVIES_URL, options, UPCOMING_MOVIES_URL} from "@/constants/config";
+import {MovieTypes} from "@/type/MovieTypes";
 
 export function SearchBar() {
     const [query, setQuery] = useState<string>("")
-    const [allMovies, setAllMovies] = useState<Movie[]>([])
-    const [filteredMovies, setFilteredMovies] = useState<Movie[]>([])
+    const [allMovies, setAllMovies] = useState<MovieTypes[]>([])
+    const [filteredMovies, setFilteredMovies] = useState<MovieTypes[]>([])
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<string | null>(null)
 

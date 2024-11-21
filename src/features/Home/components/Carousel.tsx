@@ -1,21 +1,15 @@
-import { useState, useEffect} from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card"
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel"
 import { options, POPULAR_MOVIES_URL } from "@/constants/config";
-import { MovieTypes } from "@/type/MovieTypes";
+import { Movies } from "@/types/Movies";
 
 export function PopularMovies() {
-    const [items, setItems] = useState<MovieTypes[]>([])
+    const [items, setItems] = useState<Movies[]>([])
 
     useEffect(() => {
-        fetch(POPULAR_MOVIES_URL, options)
+        fetch(`${POPULAR_MOVIES_URL}`, options)
             .then(res => res.json())
             .then(data => {
                 console.log(data);

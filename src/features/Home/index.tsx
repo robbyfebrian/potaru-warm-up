@@ -1,21 +1,19 @@
-import { BackgroundImage } from "@/features/Home/components/BackgroundImage";
-import { Title } from "@/features/Home/components/Title";
-import { PopularMovies } from "@/features/Home/components/Carousel";
-import { SearchBar } from "@/features/Home/components/SearchBar";
+import { PopularMoviesCarousel } from "@/components";
+import { HomeBackground, MoviesPage, Title } from "@/features/Home/components";
 
 const HomeFeatures = () => {
     return (
-        <div className="flex flex-col w-full">
-            <BackgroundImage/>
-            <div className="bg-black min-h-[100vh]"></div>
+        <main className="flex flex-col w-full">
+            <HomeBackground/>
+            <div className="bg-black min-h-[80vh]"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-black to-black-400 max-h-[100vh] opacity-90">
-                <div className="relative flex flex-col justify-center min-h-screen items-center z-1">
+                <div className="relative flex flex-col my-16 justify-center min-h-screen items-center z-1">
                     <Title/>
-                    <PopularMovies/>
-                    <SearchBar/>
+                    <PopularMoviesCarousel/>
+                    <MoviesPage/>
                 </div>
             </div>
-        </div>
+        </main>
     )
 }
 

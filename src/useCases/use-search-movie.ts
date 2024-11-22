@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { client } from "@/lib/hono";
 
-const useSearchMovie = (keyword: string) => {
+const useSearchMovie = (query: string) => {
     return useQuery({
-        enabled: !!keyword,
-        queryKey: ["search", keyword],
+        enabled: !!query,
+        queryKey: ["search", query],
         queryFn: async () => {
-            const response = await client.api.movies.search.$get({ query: { keyword } });
+            const response = await client.api.movies.search.$get({ query: { query } });
             if (!response.ok) { throw new Error("Failed to fetch search results"); }
             return await response.json();
         },

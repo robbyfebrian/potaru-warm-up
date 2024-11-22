@@ -1,14 +1,14 @@
 import { Hono } from 'hono';
 import { Movies } from '@/types/Movies';
 import { fetcher } from '@/server/utils/fetcher';
-import { KEYWORD_MOVIES_URL, options, POPULAR_MOVIES_URL, UPCOMING_MOVIES_URL } from '@/constants/config';
+import { AUTHORIZATION, KEYWORD_MOVIES_URL, POPULAR_MOVIES_URL, UPCOMING_MOVIES_URL } from '@/constants/config';
 
 const movies = new Hono()
     .get('/', async (c) => {
     try {
         const [upcoming, popular] = await Promise.all([
-            fetcher<{ results: Movies[] }>(`${ UPCOMING_MOVIES_URL }`, options),
-            fetcher<{ results: Movies[] }>(`${ POPULAR_MOVIES_URL }`, options),
+            fetcher<{ results: Movies[] }>(`${UPCOMING_MOVIES_URL}`, AUTHORIZATION),
+            fetcher<{ results: Movies[] }>(`${POPULAR_MOVIES_URL}`, AUTHORIZATION),
         ]);
 
         console.log(c.json({ upcoming : upcoming.results, popular : popular.results }));
@@ -20,15 +20,15 @@ const movies = new Hono()
     })
 
     .get('/search', async (c) => {
-    const keyword = c.req.query('keyword');
-    if (! keyword) {
-        return c.json({ error : 'Keyword is required' }, 400);
+    const query = c.req.query('query');
+    if (!query) {
+        return c.json({ error : 'query is required' }, 400);
     }
 
     try {
         const data = await fetcher<{ results: Movies[] }>(
-            `${ KEYWORD_MOVIES_URL }${ encodeURIComponent(keyword) }`,
-            options
+            `${KEYWORD_MOVIES_URL}${encodeURIComponent(query)}`,
+            AUTHORIZATION
         );
         return c.json(data.results);
     } catch ( error ) {

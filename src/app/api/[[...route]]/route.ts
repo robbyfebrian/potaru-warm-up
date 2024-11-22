@@ -5,10 +5,10 @@ import details from "@/server/routes/details";
 
 const app = new Hono().basePath('/api');
 
-const routes = app
+const route = app
     .route("/movies", movies)
     .route("/details", details)
 
 export const GET = handle(app)
 
-export type AppType = typeof routes;
+export type AppType = typeof route;

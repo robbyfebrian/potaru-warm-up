@@ -67,3 +67,13 @@
         @apply bg-background text-foreground;
     }
 }
+
+.skeleton {
+    @apply bg-gray-200 rounded animate-pulse;
+}
+.skeleton-text {
+    @apply h-4 bg-gray-300 rounded w-3/4;
+}
+.skeleton-circle {
+    @apply h-12 w-12 rounded-full bg-gray-300;
+}

@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export function BackgroundImage() {
+const HomeBackground = () => {
     return (
         <Image
             priority={true}
@@ -12,3 +12,5 @@ export function BackgroundImage() {
         />
     )
 }
+
+export default HomeBackground;

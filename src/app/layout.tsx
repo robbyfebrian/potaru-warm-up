@@ -1,22 +1,14 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import { Quicksand } from "next/font/google";
+import Providers from "@/util/providers";
+import './global.css'
 
 export const metadata: Metadata = {
   title: "Potaru Movies",
   description: "Potaru Warm Up Project",
 };
+
+const quickSans = Quicksand({ subsets: ["latin"]})
 
 export default function RootLayout({
   children,
@@ -25,10 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
-      >
-        {children}
+      <body className={`${quickSans.className} antialiased bg-black`}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

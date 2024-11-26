@@ -1,4 +1,4 @@
-export function Title() {
+const Title = () => {
     return (
         <div className="py-4 flex flex-col justify-start items-start">
             <div className="mx-auto">
@@ -9,3 +9,5 @@ export function Title() {
         </div>
     )
 }
+
+export default Title;
